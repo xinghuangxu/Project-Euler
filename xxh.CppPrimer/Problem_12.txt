@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int getNumOfDivisors(int num);
+
+int main()
+{
+	int i=1;
+	int num=i;
+	while(getNumOfDivisors(num)<=500){
+		i++;
+		num+=i;
+	}
+	cout<<"Result:"<<num<<endl;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+
+//true if 
+int getNumOfDivisors(int num)
+{
+	int count=2;
+	double num_sqrt=sqrt((double)num);
+	for(int i=2;i<=num_sqrt;i++){
+		if(num%i==0){
+			count+=2;
+		}
+	}
+	if(num_sqrt*num_sqrt==num){
+		count--;
+	}
+	//cout<<"Num: "<<num<<endl;
+	//cout<<"Count: "<<count<<endl;
+	return count;
+}

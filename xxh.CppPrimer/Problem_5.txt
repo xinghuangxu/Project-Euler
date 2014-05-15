@@ -1,0 +1,56 @@
+#include <iostream>
+#include<math.h>
+
+void getPrimeFactors(int *a,int size,int num);
+
+int main()
+{
+	using namespace std;
+	int size=20;
+	int *a=(int *) malloc ((size+1)*sizeof(int));
+	int *factors=(int *) malloc ((1+size)*sizeof(int));
+	for(int i=0;i<=size;i++){
+		factors[i]=0;
+	}
+	for(int i=2;i<=size;i++){
+		getPrimeFactors(a,size,i);
+		for(int j=0;j<=size;j++){
+			if(a[j]>factors[j]){
+				factors[j]=a[j];
+			}
+		}
+	}
+	int result=1;
+	for(int i=2;i<=size;i++){
+		int add=1;
+		int k=0;
+		while(k!=factors[i]){
+			add*=i;
+			k++;
+		}
+
+		result*=add;
+	}
+	cout<<"Result:"<<result;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+
+//true if 
+void getPrimeFactors(int *a,int size,int num)
+{
+	for(int i=0;i<=size;i++){
+		a[i]=0;
+	}
+	for(int i=2;i<=sqrt((double)num);i++){
+		while(num%i==0){
+			a[i]++;
+			num=num/i;
+		}
+	}
+	if(num!=1){
+		a[num]++;
+	}
+}

@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int getMaxProduct(string numstr);
+
+int main()
+{
+	double a=0,b=0.1,c;
+	while(ceil(b)!=b){
+		a++;
+		b=(double)(1000000-2000*a)/(double)(2000-2*a);
+	}
+	cout.precision(15);
+	c=1000-a-b;
+	cout<<a<<endl;
+	cout<<b<<endl;
+	cout<<c<<endl;
+	cout<<"Result:"<<a*b*c;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+
+//true if 
+int getMaxProduct(string numstr)
+{
+	int max=0;
+	int prod=1;
+	for(int i=4;i<numstr.size();i++){
+		prod=1;
+		for(int k=i-4;k<=i;k++){
+			prod*=numstr[k]-48;
+		}
+		if(prod>max){
+			max=prod;
+		}
+	}
+	return max;
+}

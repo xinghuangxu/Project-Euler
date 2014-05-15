@@ -1,0 +1,47 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int getMaxProduct(string numstr);
+
+int main()
+{
+	string line;
+	string numstr[100];
+	ifstream myfile ("100num_50digits.txt");
+	double sum=0;
+	if(myfile.is_open()){
+		int i=0;
+		while(getline(myfile,line)){
+			//cout<<line<<endl;
+			numstr[i]=line.substr (0,13);
+			sum+=atof(numstr[i].c_str());
+			i++;
+		}
+		myfile.close();
+	}
+	cout.precision(15);
+	cout<<"Result:"<<sum;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+
+//true if 
+int getMaxProduct(string numstr)
+{
+	int max=0;
+	int prod=1;
+	for(int i=4;i<numstr.size();i++){
+		prod=1;
+		for(int k=i-4;k<=i;k++){
+			prod*=numstr[k]-48;
+		}
+		if(prod>max){
+			max=prod;
+		}
+	}
+	return max;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+//problem 16
+int main()
+{
+	const int size=1000;
+	int num[size];
+	for(int i=0;i<size;i++){
+		num[i]=0;
+	}
+	int pos=0;
+	num[0]=1;
+	for(int i=0;i<size;i++){
+		for(int j=0;j<=pos;j++){
+			num[j]*=2;
+		}
+		for(int j=0;j<=pos;j++){
+			if(num[j]>=10){
+				num[j]-=10;
+				num[j+1]++;
+			}
+		}
+		if(num[pos+1]!=0){
+			pos++;
+		}
+	}
+	int sum=0;
+	for(int i=0;i<=pos;i++){
+		sum+=num[i];
+	}
+	cout.precision(15);
+	cout<<"Result:"<<sum<<endl;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+

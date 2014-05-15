@@ -1,0 +1,59 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int getTermCount(int num, int* termStatic,int size);
+
+int main()
+{
+	int size=13;
+	int *terms=(int *) malloc(size*(sizeof(int)));
+	for(int i=0;i<size;i++){
+		terms[i]=-1;
+	}
+	terms[1]=1;
+	int num=1;
+	int maxTerm=1;
+	int maxTermNum=1;
+	while(num<size){
+		int term=getTermCount(num,terms,size);
+		if(maxTerm<term){
+			maxTerm=term;
+			maxTermNum=num;
+		}
+		num++;
+	}
+	cout.precision(15);
+	cout<<"Result:"<<maxTermNum<<endl;
+	cout<<"Terms:"<<maxTerm;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+
+
+int getTermCount(int num, int* termStatic,int size)
+{
+	double tem=num;
+	int move=0;
+	int termCount=1;
+	while(tem!=1){
+		double divide=tem/2;
+		if(divide==(ceil(divide))){
+			tem=tem/2;
+		}else{
+			tem=tem*3+1;
+		}
+		if(tem<size){
+			if(termStatic[(int)tem]==-1){
+				termStatic[(int)tem]=getTermCount(int(tem),termStatic,size);
+			}
+			termStatic[num]=termCount+termStatic[(int)tem];
+			return termStatic[num];
+		}
+		termCount++;
+	}
+	return termCount;
+}

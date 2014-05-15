@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main()
+{
+	const int grid_size=20;
+	double grid[grid_size+1][grid_size+1];
+	for(int i=0;i<grid_size+1;i++){
+		grid[grid_size][i]=1;
+		grid[i][grid_size]=1;
+	}
+	for(int i=grid_size-1;i>=0;i--){
+		for(int k=grid_size-1;k>=0;k--){
+			grid[i][k]= grid[i+1][k]+grid[i][k+1];
+		}
+	}
+	cout.precision(15);
+	cout<<"Result:"<<grid[0][0]<<endl;
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+

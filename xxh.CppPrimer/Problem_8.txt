@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int getMaxProduct(string numstr);
+
+int main()
+{
+	string line;
+	string numstr;
+	ifstream myfile ("1000NUM.txt");
+	if(myfile.is_open()){
+		while(getline(myfile,line)){
+			//cout<<line<<endl;
+			numstr+=line;
+		}
+		myfile.close();
+	}
+	cout<<numstr<<endl;
+	cout<<numstr.at(10);
+	cout<<"Result:"<<getMaxProduct(numstr);
+	cout<<endl;
+	cin.get();
+	cin.get();
+	return 0;
+}
+
+//true if 
+int getMaxProduct(string numstr)
+{
+	int max=0;
+	int prod=1;
+	for(int i=4;i<numstr.size();i++){
+		prod=1;
+		for(int k=i-4;k<=i;k++){
+			prod*=numstr[k]-48;
+		}
+		if(prod>max){
+			max=prod;
+		}
+	}
+	return max;
+}
